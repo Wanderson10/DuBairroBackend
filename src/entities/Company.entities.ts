@@ -1,24 +1,17 @@
-import {
-  Entity,
-  Column,
-  PrimaryColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from "typeorm";
+import{ Entity,PrimaryColumn,Column,CreateDateColumn,UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer";
 import { v4 as uuidv4 } from "uuid";
 
-@Entity('companys')
+@Entity("companys")
 export class Company {
- 
-    @PrimaryColumn("uuid") 
-    readonly id: string
+  @PrimaryColumn("uuid")
+  readonly id: string;
 
-    constructor(){
-        if(!this.id){
-            this.id = uuidv4()
-        }
+  constructor() {
+    if (!this.id) {
+      this.id = uuidv4();
     }
+  }
   @Column()
   companyName: string;
 
@@ -28,8 +21,8 @@ export class Company {
   @Column({ length: 140 })
   @Exclude()
   password: string;
-  
-  @Column({length:50})
+
+  @Column({ length: 50 })
   telefone: string;
 
   @Column()
@@ -44,7 +37,7 @@ export class Company {
   @Column({ length: 120 })
   bairro: string;
 
-  @Column({ length: 50 ,  })
+  @Column({ length: 50 })
   tipe: string;
 
   @CreateDateColumn()
@@ -52,6 +45,8 @@ export class Company {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+
 
   
 }
