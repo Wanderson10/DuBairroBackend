@@ -5,13 +5,17 @@ import express, { NextFunction,Request,Response } from "express";
 import { AppError } from "./errors/apperror";
 import companyRoutes from "./routes/companyRoutes";
 import routerLogin from "./routes/loginRoute";
-import { ZodError } from "zod";
 
 
 
 
 
+
+const cors = require("cors");
 const app = express()
+
+
+app.use(cors());
 app.use(express.json());
 app.use("/company",companyRoutes)
 app.use("/login",routerLogin)
@@ -25,9 +29,7 @@ app.use((err: Error,req :Request,res :Response, _ : NextFunction)=>{
         
     }
 
-    if (err instanceof ZodError){
-        return res.status(400).json(err.flatten().fieldErrors )
-    }
+    
     console.log(err)
     return res.status(500).json({
         status:"error",
