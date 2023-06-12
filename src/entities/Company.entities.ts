@@ -1,18 +1,14 @@
-import{ Entity,PrimaryColumn,Column,CreateDateColumn,UpdateDateColumn } from "typeorm";
+import{ Entity,PrimaryGeneratedColumn,Column,CreateDateColumn,UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer";
-import { v4 as uuidv4 } from "uuid";
+
 
 @Entity("companys")
 export class Company {
-  @PrimaryColumn("uuid")
-  readonly id: string;
+  @PrimaryGeneratedColumn("uuid") 
+  readonly id: string
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuidv4();
-    }
-  }
-  @Column()
+  
+  @Column({ length: 120, unique: true })
   companyName: string;
 
   @Column({ length: 60, unique: true })
@@ -28,10 +24,10 @@ export class Company {
   @Column()
   logoCompany: string;
 
-  @Column()
+  @Column({ length: 2000 })
   companyDescripition: string;
 
-  @Column()
+  @Column({ length: 50 })
   city: string;
 
   @Column({ length: 120 })

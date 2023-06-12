@@ -5,6 +5,7 @@ import express, { NextFunction,Request,Response } from "express";
 import { AppError } from "./errors/apperror";
 import companyRoutes from "./routes/companyRoutes";
 import routerLogin from "./routes/loginRoute";
+import { ZodError } from "zod";
 
 
 
@@ -22,6 +23,10 @@ app.use((err: Error,req :Request,res :Response, _ : NextFunction)=>{
             message :err.message
         })
         
+    }
+
+    if (err instanceof ZodError){
+        return res.status(400).json(err.flatten().fieldErrors )
     }
     console.log(err)
     return res.status(500).json({
