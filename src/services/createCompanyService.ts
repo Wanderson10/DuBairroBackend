@@ -4,7 +4,7 @@ import AppDataSource from "../data-source"
 import { hash } from "bcrypt"
 import { AppError } from "../errors/apperror";
 
-async function createCompanyServices({companyName,email,password,telefone,logoCompany,companyDescripition,city,bairro,tipe} : ICompanyRequest) {
+async function createCompanyServices({companyName,email,password,phone,logoCompany,companyDescripition,city,district,tipe} : ICompanyRequest) {
 
     const companyRepository =  AppDataSource.getRepository(Company)
   
@@ -33,9 +33,9 @@ async function createCompanyServices({companyName,email,password,telefone,logoCo
         logoCompany,
         email,
         password:hashedPassword,
-        telefone,
+        phone,
         city,
-        bairro,
+        district,
         tipe
     })
     await companyRepository.save(company)

@@ -3,11 +3,11 @@ id:string,
 companyName : string,
 email:string,
 password:string,
-telefone:string,
+phone:string,
 logoCompany:string,
 companyDescripition:string,
 city:string,
-bairro:string,
+district:string,
 tipe:string
 
 
@@ -17,11 +17,11 @@ export interface ICompanyResponse{
     id:string,
     companyName : string,
     email:string,
-    telefone:string,
+    phone:string,
     logoCompany:string,
     companyDescripition:string,
     city:string,
-    bairro:string,
+    district:string,
     tipe:string
     
 }
@@ -36,11 +36,11 @@ export interface IUpadteCompany {
     id:string,
     companyName : string,
     email:string,
-    telefone:string,
+    phone:string,
     logoCompany:string,
     companyDescripition:string,
     city:string,
-    bairro:string,
+    district:string,
     tipe:string,
     password:string,
 

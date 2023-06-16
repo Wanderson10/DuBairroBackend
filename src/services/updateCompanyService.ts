@@ -16,9 +16,9 @@ async function updateCompanyServices(
     logoCompany,
     email,
     password,
-    telefone,
+    phone,
     city,
-    bairro,
+    district,
     tipe,
   }: IUpadteCompany,
   idParams: string
@@ -43,9 +43,9 @@ async function updateCompanyServices(
       ? companyDescripition
       : findCompany!.companyDescripition,
     logoCompany: logoCompany ? logoCompany : findCompany!.logoCompany,
-    telefone: telefone ? telefone : findCompany!.telefone,
+    phone: phone ? phone : findCompany!.phone,
     city: city ? city : findCompany!.city,
-    bairro: bairro ? bairro : findCompany!.bairro,
+    district: district? district : findCompany!.district,
     tipe: tipe ? tipe : findCompany!.tipe,
   });
 
