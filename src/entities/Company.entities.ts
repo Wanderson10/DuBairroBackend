@@ -19,7 +19,7 @@ export class Company {
   password: string;
 
   @Column({ length: 50 })
-  telefone: string;
+  phone: string;
 
   @Column()
   logoCompany: string;
@@ -31,7 +31,7 @@ export class Company {
   city: string;
 
   @Column({ length: 120 })
-  bairro: string;
+  district: string;
 
   @Column({ length: 50 })
   tipe: string;
