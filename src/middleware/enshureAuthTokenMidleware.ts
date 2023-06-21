@@ -21,13 +21,7 @@ const ensureAuthMidleware = async (req :Request, res : Response , next : NextFun
         return res.status(401).json({message:"invalid token"})
     }
 
-    req.user ={
-
-        id : decoded.id,
     
-
-    }
-
     return  next()
   })
    
