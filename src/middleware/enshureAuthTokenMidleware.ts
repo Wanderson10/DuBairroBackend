@@ -14,8 +14,14 @@ const ensureAuthMidleware = async (req :Request, res : Response , next : NextFun
  
 
   jwt.verify(token, process.env.JWT_SECRET as string,(error,decoded : any)=>{
+   
+    req.company ={
+
+      id : decoded.id,
   
-   console.log(process.env.JWT_SECRET)
+
+  }
+   
     if(error){
     
         return res.status(401).json({message:"invalid token"})

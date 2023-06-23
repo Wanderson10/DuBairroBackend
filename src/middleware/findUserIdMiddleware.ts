@@ -4,6 +4,7 @@ import { Company } from '../entities/Company.entities'
 
 const  verifyIdMiddleware = async (req : Request , res : Response, next : NextFunction)=>{
      const {id} = req.params
+     console.log(id)
      const useRepository = AppDataSource.getRepository(Company)
 
 
@@ -11,8 +12,7 @@ const  verifyIdMiddleware = async (req : Request , res : Response, next : NextFu
       const findUser = await useRepository.findOne({
        where: {id}
    })
-    console.log({meuteste:findUser})
-    
+
      if (!findUser){
         return res.status(404).json({
             message:  "invalid Id :("

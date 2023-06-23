@@ -7,10 +7,11 @@ import {
 import AppDataSource from "../data-source";
 import { AppError } from "../errors/apperror";
 import { hash } from "bcrypt";
+import { Request } from "express";
 
 async function updateCompanyServices(
   {
-    id,
+
     companyName,
     companyDescripition,
     logoCompany,
@@ -21,21 +22,25 @@ async function updateCompanyServices(
     district,
     tipe,
   }: IUpadteCompany,
-  idParams: string
+  idParams: string,
+  req:Request
 ): Promise<Company> {
+
+  const {id} = req.params
+  console.log({meuID: id})
   const companyRepository = AppDataSource.getRepository(Company);
-  const findCompany = await companyRepository.findOneBy({
-    id,
+  const findCompany = await companyRepository.findOne({
+    where:{id}
   });
+
+
   if (!findCompany) {
     throw new AppError(403, "Company not found");
   }
-  if (id) {
-    throw new AppError(403, " id not to be changed ");
-  }
+  
+  console.log({primeiraBusca: findCompany})
 
-
-  await companyRepository.update(idParams, {
+  await companyRepository.update(id, {
     companyName: companyName ? companyName : findCompany!.companyName,
     email: email ? email : findCompany!.email,
     password: password ? await hash(password, 10) : findCompany!.password,
@@ -48,8 +53,9 @@ async function updateCompanyServices(
     district: district? district : findCompany!.district,
     tipe: tipe ? tipe : findCompany!.tipe,
   });
-
+  console.log({AONDECHEGA: "Chegou!"})
   const company = await companyRepository.findOneBy({ id });
+
 
   return company!
 }

@@ -4,29 +4,15 @@ import AppDataSource from "../data-source"
 import { hash } from "bcrypt"
 import { AppError } from "../errors/apperror";
 
-async function createCompanyServices({companyName,email,password,phone,logoCompany,companyDescripition,city,district,tipe} : ICompanyRequest) {
+async function createCompanyServices({companyName,email,password,phone,logoCompany,companyDescripition,city,district,tipe} : ICompanyRequest) : Promise<Company>{
 
     const companyRepository =  AppDataSource.getRepository(Company)
-  
+    
     const hashedPassword = await hash(password,10)
- 
-     if(!companyName){
-        throw new AppError (403,"companyName as Required")
-     }
+  
+    
 
-     if(!email){
-        throw new AppError (403,"email as required")
-     }
-     if(!companyDescripition){
-        throw new AppError (403,"companyDescription as required")
-     }
-     if(!password){
-        throw new AppError (403,"Password as required")
-     }
-
-     if(!logoCompany){
-        throw new AppError (403,"logoCompany as required")
-     }
+    
    const company = companyRepository.create({
         companyName,
         companyDescripition,

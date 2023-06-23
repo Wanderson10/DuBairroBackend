@@ -33,7 +33,7 @@ export interface ICompanyLogin{
 
 export interface IUpadteCompany {
 
-    id:string,
+   
     companyName : string,
     email:string,
     phone:string,
